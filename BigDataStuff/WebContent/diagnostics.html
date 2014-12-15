@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Simple Dashboard Template | PrepBootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+<div class="page-header">
+    <h1>Analytics Sample</h1>
+</div>
+
+<!-- Simple Dashboard - START -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Top Email Senders</h3>
+                </div>
+                <div class="panel-body">
+                    <canvas id="myChart" width="500" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Top Sender Emails over time</h3>
+                </div>
+                <div id="detailChart" class="panel-body">
+              		<canvas id="myChartTwo" width="500" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/Chart.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var labelData = new Array();
+		var countData = new Array();		
+		var emailListJson = {{email_list}};
+		var emailList = jQuery.parseJSON(emailListJson);
+		
+		for(email in emailList){
+				labelData.push(email.id);
+				countData.push(email.count);
+		}
+		var data = {
+			    labels: labelData,
+			    datasets: [
+			        {
+			            label: "Email Senders Dataset",
+			            fillColor: "rgba(151,187,205,0.2)",
+			            strokeColor: "rgba(151,187,205,1)",
+			            pointColor: "rgba(151,187,205,1)",
+			            pointStrokeColor: "#fff",
+			            pointHighlightFill: "#fff",
+			            pointHighlightStroke: "rgba(151,187,205,1)",
+			            data: countData
+			        }
+			    ]
+			};
+		var ctx = $("#myChart").get(0).getContext("2d");
+		// This will get the first returned node in the jQuery collection.
+		var myRadarChart = new Chart(ctx).Radar(data);
+		
+		
+		var labelDataTop = new Array();
+		var countDataTop = new Array();
+		var emailListJsonTop = {{email_date_list}};
+		var emailListTop = jQuery.parseJSON(emailListJsonTop);
+		
+		for(email in emailListTop){
+				labelDataTop.push(email.year);
+				countDataTop.push(email.count);
+		}
+		
+		var data = {
+			    labels: labelDataTop,
+			    datasets: [
+			        {
+			            label: "Emails Over Time",
+			            fillColor: "rgba(151,187,205,0.2)",
+			            strokeColor: "rgba(151,187,205,1)",
+			            pointColor: "rgba(151,187,205,1)",
+			            pointStrokeColor: "#fff",
+			            pointHighlightFill: "#fff",
+			            pointHighlightStroke: "rgba(151,187,205,1)",
+			            data: countDataTop
+			        }
+			    ]
+			};
+		var ctxTwo = $("#myChartTwo").get(0).getContext("2d");
+		// This will get the first returned node in the jQuery collection.
+		var myLineChart = new Chart(ctxTwo).Line(data);
+	});
+	
+</script>
+
+</div>
+
+</body>
+</html>

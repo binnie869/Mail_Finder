@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>MEMEOKE</title>
+	<link rel="stylesheet" href="../../static/default.css">
+	<link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+
+				<div class>
+					<h1>Welcome to MAIL FINDER</h1>
+					<p class="lead">Please input the name or email ID of the person you would like to view emails from.
+						<!-- <br> Feel free to include your preferred shortened link.</p> -->
+				</div>
+
+				<div class="well well-sm">
+					<form class="form-horizontal" action="landing" method="post">
+					<fieldset>
+		            <legend class="text-center">Input links below</legend>
+
+					<!-- long URL input-->
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="longURL">NAME</label>
+						<div class="col-md-9">
+							<input id="longURL" name="name" type="text" placeholder="Name" class="form-control">
+						</div>
+					</div>
+
+					<!-- short URL input -->
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="shortURL">EMAIL ID</label>
+						<div class="col-md-9">
+							<input id="shortURL" name="email" type="text" placeholder="email" class="form-control">
+						</div>
+					</div>
+
+					<!-- Form submit -->
+					<div class="form-group">
+						<div class="col-md-12 text-center">
+							<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+							<!-- <a href="diagnostics">
+								<button type="submit" class="btn btn-primary btn-lg">Analytcis</button>
+							</a> -->
+						</div>
+					</div>
+					</fieldset>
+				</form>
+					<div class="form-group">
+						<div class="col-md-12 text-center">
+							<a href="diagnostics">
+								<button type="submit" class="btn btn-primary btn-lg">Analytcis</button>
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div><!-- /.container -->
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="../../static/bootstrap/js/bootstrap.min.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../../static/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

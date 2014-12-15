@@ -1,0 +1,74 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+body {
+	margin:0px;
+	background-color: #FFF;
+	font-family: "Proxima Nova";
+}
+#wrapper {
+	width: 100%;
+	height: 100%;
+	background: rgba(234,96,69,0.4);
+	-webkit-animation: pulse 10s infinite alternate;
+}
+/* 
+@-webkit-keyframes pulse {
+	0% {background-color: rgba(244,78,124,0.7);}
+	25% {background-color: rgba(224,207,129,0.7);}
+	50% {background-color: rgba(110,199,171,0.7);}
+	75% {background-color: rgba(255,136,143,0.7);}
+	100% {background-color: rgba(242,167,116,0.7);}
+}
+ */
+
+ #test {
+	width: 100%;
+	min-height: 450px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 0.9;
+	z-index: -9999;
+	background-position: 20% 20%;
+	position: absolute;
+	top: 0;
+}
+
+.form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.navbar-inverse {
+	border-radius: 0px !important;
+}
+
+.meme-header {
+	background: rgba(234,96,69,0.3);
+	-webkit-animation: pulse 10s infinite alternate;
+	margin-bottom: 50px;
+	min-height: 450px;
+}
+
+.container-fluid {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.home-header {
+	font-weight: bold;
+	text-align: center;
+	font-size: 95px;
+	padding-top: 155px;
+	color: white;
+}
+
+.content {
+	padding-top: 10px;
+}
