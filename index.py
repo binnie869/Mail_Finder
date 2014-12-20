@@ -14,8 +14,10 @@ app = Flask(__name__)
 
 # Setup Mongo
 conn = pymongo.Connection() # defaults to localhost
-db = conn.agile_data
+db = conn.anubhav_gupta
 emails = db['full_inbox']
+username = anubhav.gupta
+password = jMxiso8Y
 
 # Setup ElasticSearch
 elastic = pyelasticsearch.ElasticSearch(config.ELASTIC_URL)
@@ -83,6 +85,7 @@ def dummmy(offset1 = 0, offset2 = config.EMAILS_PER_PAGE, query=None):
   if name == '' and email == '':
     query = request.args.get('search')
     if query == None:
+      db.auth(username, password)
       email_list = emails.find()[offset1:offset2]
       print "11111111111111111111111111"
     # else:
@@ -92,12 +95,15 @@ def dummmy(offset1 = 0, offset2 = config.EMAILS_PER_PAGE, query=None):
     # nav_offsets = get_navigation_offsets(offset1, offset2, x)#config.EMAILS_PER_PAGE)
     # return render_template('partials/emails.html', emails=email_list, nav_offsets=nav_offsets, nav_path='/emails/', query=query)
   elif email == '' and name != '':
+    db.auth(username, password)
     email_list = emails.find({"from.real_name":name})[offset1:offset2]
     print "2222222222222222222222"
   elif name == '' and email != '':
+    db.auth(username, password)
     email_list = emails.find({"from.address":email})[offset1:offset2]
     print "3333333333333333333333333"
   elif email != '' and name != '':
+    db.auth(username, password)
     email_list = emails.find({"from.real_name":name})[offset1:offset2]
     print "4444444444444444444444"
   nav_offsets = get_navigation_offsets(offset1, offset2, x)#config.EMAILS_PER_PAGE)
@@ -118,6 +124,7 @@ def dummmy2(offset1, offset2, name='', email='', query=None):
   if name == '' and email == '':
     query = request.args.get('search')
     if query == None:
+      db.auth(username, password)
       email_list = emails.find()[offset1:offset2]
       print "11111111111111111111111111"
     # else:
@@ -127,12 +134,15 @@ def dummmy2(offset1, offset2, name='', email='', query=None):
     # nav_offsets = get_navigation_offsets(offset1, offset2, x)#config.EMAILS_PER_PAGE)
     # return render_template('partials/emails.html', emails=email_list, nav_offsets=nav_offsets, nav_path='/emails/', query=query)
   elif email == '' and name != '':
+    db.auth(username, password)
     email_list = emails.find({"from.real_name":name})[offset1:offset2]
     print "2222222222222222222222"
   elif name == '' and email != '':
+    db.auth(username, password)
     email_list = emails.find({"from.address":email})[offset1:offset2]
     print "3333333333333333333333333"
   elif email != '' and name != '':
+    db.auth(username, password)
     email_list = emails.find({"from.real_name":name})[offset1:offset2]
     print "4444444444444444444444"
   nav_offsets = get_navigation_offsets(offset1, offset2, x)#config.EMAILS_PER_PAGE)
@@ -140,6 +150,7 @@ def dummmy2(offset1, offset2, name='', email='', query=None):
 
 @app.route("/email/<message_id>")
 def sent_counts(message_id):
+  db.auth(username, password)
   email = emails.find_one({'message_id': message_id})
   return render_template('partials/email.html', email=email)
   
@@ -171,6 +182,7 @@ def list_emails(offset1 = 0, offset2 = config.EMAILS_PER_PAGE, query=None):
   query = request.args.get('search')
   x = offset2 - offset1
   if query==None:
+    db.auth(username, password)
     email_list = emails.find()[offset1:offset2]
   else:
     results = elastic.search({'query': {'match': { '_all': query}}, 'sort': {'date': {'order': 'desc'}}, 'from': offset1, 'size':x},index="fullinbox") #config.EMAILS_PER_PAGE}, index="fullinbox")
@@ -186,6 +198,7 @@ def top_senders():
   time_top =list()
   count_top =list()
   f = open('sample.txt', 'w')
+  db.auth(username, password)
   for email in emails.find():
     #print email['from']['address']
     f.write(str(email['from']['address']))
